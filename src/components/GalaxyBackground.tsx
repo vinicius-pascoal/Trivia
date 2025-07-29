@@ -34,7 +34,7 @@ export default function GalaxyBackground() {
     }));
     setStars(starList);
 
-    const planetList: Planet[] = Array.from({ length: 5 }, (_, i) => ({
+    const planetList: Planet[] = Array.from({ length: 7 }, (_, i) => ({
       size: 20 + Math.random() * 20,
       color: `linear-gradient(135deg, hsl(${
         Math.random() * 360
