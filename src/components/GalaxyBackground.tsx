@@ -68,6 +68,35 @@ export default function GalaxyBackground() {
         transition={{ duration: 180, repeat: Infinity, ease: "linear" }}
       />
 
+      {/* Lens flare central */}
+      <motion.div
+        className="absolute inset-0 pointer-events-none"
+        initial={{ opacity: 0.15, scale: 1 }}
+        animate={{ opacity: [0.15, 0.25, 0.15], scale: [1, 1.05, 1] }}
+        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+      >
+        <div
+          className="absolute left-1/2 top-1/2 rounded-full blur-3xl"
+          style={{
+            width: 600,
+            height: 600,
+            transform: "translate(-50%, -50%)",
+            background:
+              "radial-gradient(circle, rgba(255,255,255,0.15), transparent 70%)",
+          }}
+        />
+        <div
+          className="absolute left-1/2 top-1/2 rounded-full blur-2xl"
+          style={{
+            width: 300,
+            height: 300,
+            transform: "translate(-50%, -50%)",
+            background:
+              "radial-gradient(circle, rgba(147,197,253,0.35), transparent 80%)",
+          }}
+        />
+      </motion.div>
+
       {/* Estrelas */}
       {stars.map((star, i) => (
         <div
