@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { TriviaCard } from "../components/TriviaCard";
 import { Loader } from "../components/Loader";
+import GalaxyBackground from "../components/GalaxyBackground";
 
 type GameState = "start" | "playing" | "finished";
 
@@ -85,8 +86,9 @@ export default function HomePage() {
   }, [difficulty]);
 
   return (
-    
-      <main className="text-center text-white p-4">
+    <>
+      <GalaxyBackground />
+      <main className="bg-gray-800 backdrop-blur-md max-h-screen flex align-middle justify-center flex-col w-fit mx-auto my-10 text-center text-white p-10 rounded-3xl shadow-lg">
         <h1 className="text-4xl font-bold mb-6">Trivia</h1>
 
         {gameState === "start" && (
@@ -94,7 +96,7 @@ export default function HomePage() {
             <div className="mb-4">
               <label className="mr-2">Dificuldade:</label>
               <select
-                className="text-black rounded-lg px-2 py-1"
+                className="text-blue-300 rounded-lg px-2 py-1"
                 value={difficulty}
                 onChange={(e) =>
                   setDifficulty(e.target.value as "easy" | "medium" | "hard")
@@ -146,6 +148,6 @@ export default function HomePage() {
           </div>
         )}
       </main>
-    
+    </>
   );
 }
