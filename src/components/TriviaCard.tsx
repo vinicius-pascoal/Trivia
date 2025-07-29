@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
-import { useEffect, useState } from 'react';
+import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
 interface Props {
   data: {
@@ -9,6 +9,7 @@ interface Props {
     correct_answer: string;
     incorrect_answers: string[];
     difficulty: string;
+    category: string;
   };
   onAnswer: (isCorrect: boolean, difficulty: string) => void;
 }
@@ -20,7 +21,9 @@ export function TriviaCard({ data, onAnswer }: Props) {
 
   useEffect(() => {
     setShuffled(
-      [...data.incorrect_answers, data.correct_answer].sort(() => 0.5 - Math.random())
+      [...data.incorrect_answers, data.correct_answer].sort(
+        () => 0.5 - Math.random()
+      )
     );
     setSelected(null);
     setTimeLeft(30);
@@ -49,9 +52,10 @@ export function TriviaCard({ data, onAnswer }: Props) {
   };
 
   const decode = (str: string) => {
-    return str.replace(/&quot;/g, '"')
-              .replace(/&#039;/g, "'")
-              .replace(/&amp;/g, "&");
+    return str
+      .replace(/&quot;/g, '"')
+      .replace(/&#039;/g, "'")
+      .replace(/&amp;/g, "&");
   };
 
   return (
@@ -60,16 +64,24 @@ export function TriviaCard({ data, onAnswer }: Props) {
       animate={{ opacity: 1, y: 0 }}
       className="bg-white text-black p-6 rounded-2xl shadow-xl max-w-xl w-full"
     >
+      <h1 className="text-lg font-semibold text-blue-400">
+        {decode(data.category)}
+      </h1>
       <div className="flex justify-between mb-4">
         <h2 className="text-lg font-semibold">{decode(data.question)}</h2>
-        <div className={`font-bold ${timeLeft <= 5 ? 'text-red-600' : 'text-blue-600'}`}>
+        <div
+          className={`font-bold ${
+            timeLeft <= 5 ? "text-red-600" : "text-blue-600"
+          }`}
+        >
           ⏳ {timeLeft}s
         </div>
       </div>
       <div className="grid gap-3">
         {shuffled.map((option) => {
           const isCorrect = selected && option === data.correct_answer;
-          const isWrong = selected && option === selected && option !== data.correct_answer;
+          const isWrong =
+            selected && option === selected && option !== data.correct_answer;
 
           return (
             <button
@@ -77,13 +89,15 @@ export function TriviaCard({ data, onAnswer }: Props) {
               onClick={() => checkAnswer(option)}
               disabled={!!selected}
               className={`px-4 py-2 rounded-xl border font-medium transition-colors duration-300
-                ${selected
-                  ? isCorrect
-                    ? 'bg-green-500 text-white'
-                    : isWrong
-                    ? 'bg-red-500 text-white'
-                    : 'bg-gray-200'
-                  : 'bg-indigo-100 hover:bg-indigo-200'}
+                ${
+                  selected
+                    ? isCorrect
+                      ? "bg-green-500 text-white"
+                      : isWrong
+                      ? "bg-red-500 text-white"
+                      : "bg-gray-200"
+                    : "bg-indigo-100 hover:bg-indigo-200"
+                }
               `}
             >
               {decode(option)}
