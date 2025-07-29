@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
 
 export function Loader() {
   return (
@@ -9,7 +9,7 @@ export function Loader() {
       animate={{ opacity: [0.3, 1, 0.3] }}
       transition={{ repeat: Infinity, duration: 1.5 }}
     >
-      Carregando pergunta...
+      Loading question...
     </motion.div>
   );
 }

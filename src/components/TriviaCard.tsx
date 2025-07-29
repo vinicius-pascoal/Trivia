@@ -62,12 +62,12 @@ export function TriviaCard({ data, onAnswer }: Props) {
     <motion.div
       initial={{ opacity: 0, y: 40 }}
       animate={{ opacity: 1, y: 0 }}
-      className="bg-white text-black p-6 rounded-2xl shadow-xl max-w-xl w-full"
+      className="bg-gray-900 text-black p-6 rounded-2xl shadow-xl max-w-xl w-full"
     >
       <h1 className="text-lg font-semibold text-blue-400">
         {decode(data.category)}
       </h1>
-      <div className="flex justify-between mb-4">
+      <div className="flex justify-between mb-4 text-white">
         <h2 className="text-lg font-semibold">{decode(data.question)}</h2>
         <div
           className={`font-bold ${
@@ -106,7 +106,7 @@ export function TriviaCard({ data, onAnswer }: Props) {
         })}
       </div>
       {selected === "time_expired" && (
-        <p className="mt-3 text-red-500 font-semibold">Tempo esgotado!</p>
+        <p className="mt-3 text-red-500 font-semibold">Time out!</p>
       )}
     </motion.div>
   );

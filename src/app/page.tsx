@@ -88,13 +88,13 @@ export default function HomePage() {
   return (
     <>
       <GalaxyBackground />
-      <main className="bg-gray-800 backdrop-blur-md max-h-screen flex align-middle justify-center flex-col w-fit mx-auto my-10 text-center text-white p-10 rounded-3xl shadow-lg">
+      <main className="bg-[#38383828] backdrop-blur-md max-h-screen flex align-middle justify-center flex-col w-fit mx-auto mt-40 text-center text-white p-10 rounded-3xl shadow-lg">
         <h1 className="text-4xl font-bold mb-6">Trivia</h1>
 
         {gameState === "start" && (
           <>
             <div className="mb-4">
-              <label className="mr-2">Dificuldade:</label>
+              <label className="mr-2">Difficulty:</label>
               <select
                 className="text-blue-300 rounded-lg px-2 py-1"
                 value={difficulty}
@@ -111,7 +111,7 @@ export default function HomePage() {
               onClick={startGame}
               className="bg-white text-black px-6 py-2 rounded-xl font-semibold hover:bg-gray-200 transition"
             >
-              Jogar
+              Play
             </button>
           </>
         )}
@@ -120,10 +120,10 @@ export default function HomePage() {
           <>
             <div className="mb-4 flex items-center gap-4">
               <span className="text-lg">
-                Pontuação: <strong>{score}</strong>
+                Score: <strong>{score}</strong>
               </span>
               <span className="text-lg">
-                Pergunta: {questionCount + 1}/{maxQuestions}
+                Question: {questionCount + 1}/{maxQuestions}
               </span>
             </div>
             {loading || !questionData ? (
@@ -136,14 +136,14 @@ export default function HomePage() {
 
         {gameState === "finished" && (
           <div className="text-center space-y-4">
-            <h2 className="text-3xl font-bold">🏁 Fim de jogo!</h2>
-            <p className="text-xl">Sua pontuação final foi:</p>
+            <h2 className="text-3xl font-bold">🏁 Game over!</h2>
+            <p className="text-xl">Your final score was:</p>
             <p className="text-5xl font-bold">{score}</p>
             <button
               onClick={restartGame}
               className="mt-4 bg-white text-black px-6 py-2 rounded-xl font-semibold hover:bg-gray-200 transition"
             >
-              Jogar Novamente
+              Play Again
             </button>
           </div>
         )}
